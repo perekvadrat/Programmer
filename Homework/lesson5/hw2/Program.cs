@@ -5,39 +5,36 @@
 // В результате показать координаты, которые получатся. 
 // при k = 2 получаем "(0,0) (4,0) (4,4) (0,4)"
 
-Console.Write("Задайте вершины фигуры одной строкой: ");
-string top = (Console.ReadLine() ?? "0"); // (0,0) (2,0) (2,2) (0,2)
+string text = "(0,0) (2,0) (2,2) (0,2)"
+            .Replace("(", "")
+            .Replace(")", "")
+            ;
+Console.WriteLine(text);
 
 Console.Write("Задайте коэффициент масштабирования: ");
-int k = int.Parse(Console.ReadLine() ?? "0");
+double k = double.Parse(Console.ReadLine() ?? "0");
 
-char top1 = Convert.ToChar(top[1]*k-(48*(k-1)));
-char top2 = Convert.ToChar(top[3]*k-(48*(k-1)));
-char top3 = Convert.ToChar(top[7]*k-(48*(k-1)));
-char top4 = Convert.ToChar(top[9]*k-(48*(k-1)));
-char top5 = Convert.ToChar(top[13]*k-(48*(k-1)));
-char top6 = Convert.ToChar(top[15]*k-(48*(k-1)));
-char top7 = Convert.ToChar(top[19]*k-(48*(k-1)));
-char top8 = Convert.ToChar(top[21]*k-(48*(k-1)));
+var data = text.Split(" ")
+                .Select(item => item.Split(','))
+                .Select(e => (x: int.Parse(e[0]), y: int.Parse(e[1])))
+                .Select(point => (point.x * k, point.y * k))
+                .ToArray();
 
-Console.WriteLine($"k={k} ({top1},{top2}) ({top3},{top4}) ({top5},{top6}) ({top7},{top8})");
+// Console.Write("Задайте коэффициент масштабирования: ");
+// int k = int.Parse(Console.ReadLine() ?? "0");
 
-// void PrintArray(string[] matr)
+// int[] array = new int[4];
+// for (int i = 0; i < array.Length; i++)
 // {
-//     for (int i = 0; i < matr.Length; i++)
-//     {
-//         Console.Write($"{matr[i]} ");
-//     }
+//     array[i] = int.Parse(data[i]);
+//     Console.WriteLine(array[i]);
 // }
 
-// void FillArray(string[] matr)
-// {
-//     for (int i = 0; i < matr.Length; i++)
-//     {
-//         matr[i] = Convert.ToString((new Random().Next(0, 10)), (new Random().Next(0, 10)));
-//     }
-// }
+// int i = 0;
+// int index = int.Parse(data[i]);
 
-// string[] shape = new string[4];
-// FillArray(shape);
-// PrintArray(shape);
+for (int i = 0; i < data.Length; i++)
+{
+    Console.Write($"{data[i]} ");
+}
+Console.WriteLine();
