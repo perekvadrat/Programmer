@@ -20,19 +20,6 @@ var data = text.Split(" ")
                 .Select(point => (point.x * k, point.y * k))
                 .ToArray();
 
-// Console.Write("Задайте коэффициент масштабирования: ");
-// int k = int.Parse(Console.ReadLine() ?? "0");
-
-// int[] array = new int[4];
-// for (int i = 0; i < array.Length; i++)
-// {
-//     array[i] = int.Parse(data[i]);
-//     Console.WriteLine(array[i]);
-// }
-
-// int i = 0;
-// int index = int.Parse(data[i]);
-
 for (int i = 0; i < data.Length; i++)
 {
     Console.Write($"{data[i]} ");
