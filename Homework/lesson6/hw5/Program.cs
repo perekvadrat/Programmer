@@ -1,9 +1,7 @@
 ﻿// Написать программу, которая обменивает элементы первой строки и последней строки
 
-Console.Write("Введите количество строк: ");
-int m = int.Parse(Console.ReadLine() ?? "0");
-Console.Write("Введите количество столбцов: ");
-int n = int.Parse(Console.ReadLine() ?? "0");
+int m = 2;
+int n = 1;
 
 void PrintArray(int[,] matr)
 {
@@ -30,15 +28,12 @@ void FillArray(int[,] matr)
 
 void ChangeStrings(int[,] matr, int a, int b)
 {
-    int[] temparray = new int[n]; // Временный массив
-    for (int i = 0; i < matr.GetLength(0); i++)
+    int temparray = 0; // Временная переменная
+    for (int j = 0; j < matr.GetLength(1); j++)
     {
-        for (int j = 0; j < matr.GetLength(1); j++)
-        {
-            temparray[j] = matr[a, j];
-            matr[a, j] = matr[b, j];
-            matr[b, j] = temparray[j];
-        }
+        temparray = matr[a, j];
+        matr[a, j] = matr[b, j];
+        matr[b, j] = temparray;
     }
 }
 
@@ -49,5 +44,3 @@ Console.WriteLine();
 
 ChangeStrings(array, 0, m-1);
 PrintArray(array);
-
-// Пока не разобрался почему работает только с нечётным количеством строк
